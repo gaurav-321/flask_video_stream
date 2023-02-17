@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" style="font-family: 'Roboto', sans-serif;">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="//cdn.embed.ly/player-0.1.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark">
+<script type="text/javascript">
+
+
+    var userHasInteracted = false;
+
+    var updateInteractionValue = function () {
+        userHasInteracted = true;
+        console.log(userHasInteracted);
+    };
+
+    $('body').click(updateInteractionValue);
+    var scrollHandler = function () {
+
+        playing = false;
+        $("video").each(function () {
+            if (this.getBoundingClientRect().y > 0 && playing === false) {
+                if (userHasInteracted===false) {
+                    $(this).prop('muted', true);
+                }
+                else{
+                    $(this).prop('muted', false);
+                }
+                $(this).trigger("play");
+                playing = true;
+            } else {
+                $(this).trigger("pause");
+            }
+
+        })
+    };
+    // add the scrollHandler
+    window.addEventListener('scroll', scrollHandler, true);
+
+    // don't forget to update the positions again if we do resize the page
+
+    function search() {
+        let search = $("#search").val()
+        window.open("/index?search=" + search, "_self")
+    }
+</script>
+<div class="container " style="width: 60%">
+    <div class="input-group">
+        <input type="search" id="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+               aria-describedby="search-addon"/>
+        <button type="button" class="btn btn-outline-primary" onclick="search()">search</button>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row jusitfy-content-center searchbarfull mt-5 text-center">
+        {% for video in video_files %}
+        <div class="col-12">
+            <video width="100%" controls preload="metadata">
+                <!-- MP4 must be first for iPad! -->
+                <source src="{{ url_for('static',filename=video)}}#t=0.3" type="video/mp4"/><!-- WebKit video    -->
+                <!-- fallback to Flash: -->
+
+            </video>
+            <p class="text-light" style="font-size: 30px;padding: 10px 0 40px 0">{{video.split("_")[0].title()}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% if next_page %}
+    <div class="row">
+        <a class="btn btn-primary w-100" href="index?page={{page+1}}">
+            <b>Next Page</b>
+        </a>
+    </div>
+    {% endif%}
+
+</div>
+
+</body>
+</html>
