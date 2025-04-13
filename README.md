@@ -1,18 +1,18 @@
-# 🎥 Video Streamer
+# Video Streamer 🎥
 
 🌟 A simple Flask web application to serve and search through video files stored locally.
 
-## ✨ Description
+## Description ✨
 
 Video Streamer is a lightweight Python program built using Flask that allows you to display video files from a designated directory on your local machine. It provides a user-friendly interface for browsing and searching videos by filename.
 
-## 🚀 Features
+## Features 🚀
 
 - **Video Serving**: Display video files directly in web browsers.
 - **Search Functionality**: Easily find specific videos by their filenames.
 - **Cross-Platform Compatibility**: Works on Windows, macOS, and Linux.
 
-## 🛠️ Installation
+## Installation 🛠️
 
 To get started with Video Streamer, follow these steps:
 
@@ -27,7 +27,7 @@ To get started with Video Streamer, follow these steps:
    pip install Flask
    ```
 
-## 📦 Usage
+## Usage 📦
 
 Here’s how you can use Video Streamer:
 
@@ -40,15 +40,15 @@ Once the server is running, open your web browser and navigate to `http://127.0.
 ### Searching for Videos
 Simply enter a filename in the search bar to find specific videos.
 
-## 🔧 Configuration (if applicable)
+## Configuration 🔧
 
 No additional configuration is required beyond setting up the Flask environment.
 
-## 🧪 Tests
+## Tests 🧪
 
 This project does not include automated tests at this time.
 
-## 📁 Project Structure
+## Project Structure 📁
 
 ```
 flask_video_stream/
@@ -59,11 +59,11 @@ flask_video_stream/
 - `app.py`: The main Python file that sets up the Flask application.
 - `README.md`: This documentation file.
 
-## 🙌 Contributing
+## Contributing 🙌
 
 Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) to get started.
 
-## 📄 License
+## License 📄
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
